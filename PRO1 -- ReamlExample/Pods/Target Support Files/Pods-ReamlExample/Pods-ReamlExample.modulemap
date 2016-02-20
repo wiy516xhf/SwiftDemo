@@ -1,0 +1,6 @@
+framework module Pods_ReamlExample {
+  umbrella header "Pods-ReamlExample-umbrella.h"
+
+  export *
+  module * { export * }
+}
