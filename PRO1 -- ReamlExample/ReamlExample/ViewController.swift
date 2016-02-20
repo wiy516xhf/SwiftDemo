@@ -25,7 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var nameArray = [String]()
     var numberArray = [Int]()
     
-
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
@@ -36,48 +36,63 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         loadMaterial()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nameArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        var nameLabel : UILabel = cell.viewWithTag(1) as! UILabel
-        var numberLabel : UILabel = cell.viewWithTag(2) as! UILabel
+        let nameLabel : UILabel = cell.viewWithTag(1) as! UILabel
+        let numberLabel : UILabel = cell.viewWithTag(2) as! UILabel
         nameLabel.text = nameArray[indexPath.row]
         numberLabel.text = String(numberArray[indexPath.row])
         
         return cell
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete{
+            
+            let realm = try! Realm()
+            try! realm.write({ () -> Void in
+                realm.delete(realm.objects(Material).filter("name = '\(nameArray[indexPath.row])' AND number = \(numberArray[indexPath.row])"))
+                
+                nameArray.removeAtIndex(indexPath.row)
+                numberArray.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                
+            })
+        }
+    }
     
+    // initial the table
     func loadMaterial(){
         let realm = try! Realm()
-
+        
         //get objects using NSPredicate
-//        var material = realm.objects(Material).filter(NSPredicate(format: "number > %@", "0" ))
+        //        var material = realm.objects(Material).filter(NSPredicate(format: "number > %@", "0" ))
         
         //get objects with using Realm predication
-//        let material = realm.objects(Material).filter("number > 0")
+        //        let material = realm.objects(Material).filter("number > 0")
         
         //get all objects of one class
         let material = realm.objects(Material)
-
         
-//        print(material)
-//        print(material.count)
-//        print(material[1])
-//        print(material[0])
+        
+        //        print(material)
+        //        print(material.count)
+        //        print(material[1])
+        //        print(material[0])
         
         for i in 0..<material.count {
-           nameArray.append(material[i].name)
+            nameArray.append(material[i].name)
             numberArray.append(material[i].number)
         }
         
@@ -95,11 +110,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func sureTapped(sender: AnyObject) {
-    
+        
         if let addName = addNameField.text, addNumber = addNumberField.text {
             
             if addName == "" || addNumber == "" || addNumber == "0" {
-                                
+                
                 return
             }
             
@@ -134,9 +149,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-      return textField.resignFirstResponder()
+        return textField.resignFirstResponder()
     }
-
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        if addNumberField.editing{
+            addNumberField.resignFirstResponder()
+        }
+        if addNameField.editing{
+            addNameField.resignFirstResponder()
+        }
+    }
+    
 }
 
