@@ -21,6 +21,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var addView: UIView!
     @IBOutlet weak var addNameField: UITextField!
     @IBOutlet weak var addNumberField: UITextField!
+    @IBOutlet weak var addViewTopCon: NSLayoutConstraint!
+    @IBOutlet weak var addViewBotCon: NSLayoutConstraint!
+    @IBOutlet weak var addViewLeftCon: NSLayoutConstraint!
+    @IBOutlet weak var addViewRightCon: NSLayoutConstraint!
     
     var nameArray = [String]()
     var numberArray = [Int]()
@@ -35,6 +39,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view, typically from a nib.
         
         loadMaterial()
+        
+        addViewTopCon.constant = self.view.frame.size.height - 50
+        addViewLeftCon.constant = self.view.frame.size.width/2
     }
     
     override func didReceiveMemoryWarning() {
@@ -100,14 +107,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func addTapped(sender: AnyObject) {
+        self.addViewLeftCon.constant = 0
+        self.addViewTopCon.constant = 0
+
         UIView.animateWithDuration(0.5) { () -> Void in
             self.addView.alpha = 1.0
+            
+            self.view.layoutIfNeeded()
+            
         }
         
     }
     
-    @IBAction func searchTapped(sender: AnyObject) {
-    }
     
     @IBAction func sureTapped(sender: AnyObject) {
         
@@ -132,11 +143,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             mainTableView.reloadData()
             
+            addViewTopCon.constant = self.view.frame.size.height - 50
+            addViewLeftCon.constant = self.view.frame.size.width/2
+            
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.addView.alpha = 0
+                self.view.layoutIfNeeded()
+
                 }, completion: { (value : Bool) -> Void in
                     self.addNameField.text = ""
                     self.addNumberField.text = ""
+                    
             })
             
         }
@@ -144,8 +161,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func cancelTapped(sender: AnyObject) {
+        
+        addViewTopCon.constant = self.view.frame.size.height - 50
+        addViewLeftCon.constant = self.view.frame.size.width/2
+        
         UIView.animateWithDuration(0.5) { () -> Void in
             self.addView.alpha = 0
+            
+            self.view.layoutIfNeeded()
         }
     }
     

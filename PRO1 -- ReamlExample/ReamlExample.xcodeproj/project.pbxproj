@@ -220,6 +220,7 @@
 				TargetAttributes = {
 					9B986CD61C78205F00E4D88E = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = YBXS6DY5VQ;
 					};
 					9B986CEA1C78205F00E4D88E = {
 						CreatedOnToolsVersion = 7.2;
@@ -473,10 +474,13 @@
 			baseConfigurationReference = 0F9E842403BA1ABD4E5B2B83 /* Pods-ReamlExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ReamlExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = feifei.ReamlExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -485,10 +489,13 @@
 			baseConfigurationReference = 6F550D9300BFB0378D5F1218 /* Pods-ReamlExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ReamlExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = feifei.ReamlExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
