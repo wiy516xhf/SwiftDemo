@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ParallaxTableView" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nNB-Ox-cib">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="150" id="vJZ-ud-Ob0" customClass="ParallaxTableViewCell" customModule="ParallaxTableView" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vJZ-ud-Ob0" id="3OW-X3-qp7">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NPI-fc-zcb">
+                                                    <rect key="frame" x="0.0" y="-50" width="600" height="249"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzp-oZ-wKx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="100"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="shadowOffset" width="-1" height="-1"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Gzp-oZ-wKx" firstAttribute="top" secondItem="3OW-X3-qp7" secondAttribute="top" id="3OT-15-HFb"/>
+                                                <constraint firstAttribute="trailing" secondItem="NPI-fc-zcb" secondAttribute="trailing" id="D2N-b0-IXj"/>
+                                                <constraint firstItem="NPI-fc-zcb" firstAttribute="leading" secondItem="3OW-X3-qp7" secondAttribute="leading" id="OI3-WX-k5z"/>
+                                                <constraint firstAttribute="bottom" secondItem="Gzp-oZ-wKx" secondAttribute="bottom" id="Wo9-u2-Gmb"/>
+                                                <constraint firstItem="NPI-fc-zcb" firstAttribute="top" secondItem="3OW-X3-qp7" secondAttribute="top" constant="-50" id="lWL-jf-NYL"/>
+                                                <constraint firstAttribute="bottom" secondItem="NPI-fc-zcb" secondAttribute="bottom" constant="-50" id="nAa-ce-a7Y"/>
+                                                <constraint firstAttribute="trailing" secondItem="Gzp-oZ-wKx" secondAttribute="trailing" id="tIN-wg-DF7"/>
+                                                <constraint firstItem="Gzp-oZ-wKx" firstAttribute="leading" secondItem="3OW-X3-qp7" secondAttribute="leading" id="yhC-Nc-Twj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bgImgView" destination="NPI-fc-zcb" id="0Fh-X4-Tqh"/>
+                                            <outlet property="btmCon" destination="nAa-ce-a7Y" id="e8V-ED-17r"/>
+                                            <outlet property="numberLabel" destination="Gzp-oZ-wKx" id="P5w-qy-Cjd"/>
+                                            <outlet property="topCon" destination="lWL-jf-NYL" id="Y0E-fp-Crk"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="KBO-Lu-DMf"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="aBR-Tz-dYv"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nNB-Ox-cib" secondAttribute="bottom" id="M3p-L7-l2h"/>
+                            <constraint firstItem="nNB-Ox-cib" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Mb7-sj-wkc"/>
+                            <constraint firstItem="nNB-Ox-cib" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="uIY-01-vaX"/>
+                            <constraint firstAttribute="trailing" secondItem="nNB-Ox-cib" secondAttribute="trailing" id="uL0-z2-ane"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="parallaxTable" destination="nNB-Ox-cib" id="Ze0-PF-Zko"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="375"/>
+        </scene>
+    </scenes>
+</document>
